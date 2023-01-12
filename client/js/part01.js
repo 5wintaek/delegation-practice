@@ -26,6 +26,7 @@ const data = [
 // 이벤트 객체에서 타겟을 찾는다.
 
 const navigation = getNode(".navigation");
+const visualImage = getNode(".visual img"); // 비쥬얼 안에 있는 이미지 가져옴
 // const list = getNodes(".navigation > li");
 
 // console.log(navigation);
@@ -39,12 +40,25 @@ function makeArray(arrayLike) {
 
 function handler(e) {
   let target = e.target.closest("li"); // 가장 가까운 li 를 찾는거
+  if (!target) return;
   let list = makeArray(navigation.children);
+  let index = attr(target, "data-index");
+
   if (!target) return;
 
-  console.log(list);
+  // Array.from(list)
+  // let arr = [...list]
+  // Array.prototype.slice.call(list)
 
+  // item -> [li,li,li,li]
   list.forEach((item) => removeClass(item, "is-active"));
+
+  attr(visualImage, "src", `./assets/part01/visual${index}.jpg`);
+  attr(visualImage, "alt", data[index - 1].alt);
+  // visualImage.src = `./assets/part01/visual${index}.jpg`
+  // -1 한 부분은 index에서 받아온 data-index가 1부터 시작하고, 배열은 0부터 시작하니까
+
+  // console.log(index);
 
   addClass(target, "is-active");
 }
