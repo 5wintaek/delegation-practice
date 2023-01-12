@@ -64,10 +64,24 @@
   margin: 0.3rem;
   cursor: pointer;
   border: 4px solid transparent;
+  transition: all 0.3s;
 }
 
 .bullet.is-active {
   border: 4px solid dodgerblue;
+  transform: translate(-5px, -5px);
+  box-shadow: 2px 2px 2px 2px #ddd;
+}
+
+.bullet img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 900px) {
